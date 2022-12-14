@@ -12,7 +12,7 @@ const ArticlePreview = ({ article, children }) => (
     <div className="article-list__item">
       <div className="article__info">
         <div className="article__title-likes">
-          <Link to={`${article.slug}`}>
+          <Link to={`articles/${article.slug}`}>
             <Title level={2} href="">
               {article.title}
             </Title>

@@ -2,7 +2,7 @@ import { Route } from 'react-router-dom'
 
 import Header from '../Header'
 import Main from '../Main'
-import Layout from '../Layout'
+//import Layout from '../Layout'
 import ArticleList from '../../pages/ArticleList'
 import SingleArticle from '../../pages/SengleArticle'
 
@@ -13,7 +13,7 @@ function App() {
     <>
       <Header />
       <Main>
-        <Route path="/" exact component={Layout} />
+        <Route path="/" exact component={ArticleList} />
         <Route path="/articles" exact component={ArticleList} />
         <Route path="/articles/:slug" component={SingleArticle} />
       </Main>
