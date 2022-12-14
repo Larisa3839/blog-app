@@ -1,0 +1,34 @@
+
+
+.article-list {
+    list-style: none;
+    margin: 26 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.ant-pagination {
+    text-align: center;
+    font-family: 'Inter';
+    font-size: 12px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.65);
+}
+.ant-pagination:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-pagination:where(.css-dev-only-do-not-override-1i536d8).ant-pagination-mini .ant-pagination-item {
+    background: #1890FF;
+    border-radius: 4px;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-pagination .ant-pagination-item-active a {
+    color: #FFFFFF;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-pagination:where(.css-dev-only-do-not-override-1i536d8).ant-pagination-mini .ant-pagination-options {
+    display: none;
+}

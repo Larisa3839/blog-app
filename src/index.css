@@ -1,4 +1,9 @@
+a:not([class]) {
+  text-decoration: none;
+}
+
 body {
   margin: 0;
+  background-color: #E5E5E5;
 }
 

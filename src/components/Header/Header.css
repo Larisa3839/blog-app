@@ -1,0 +1,39 @@
+.header {
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    padding: 22px;
+}
+
+.header__title {
+    margin: 0;
+}
+
+h1:where(.css-dev-only-do-not-override-1i536d8).ant-typography {
+    margin: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.header_buttons {
+    display: flex;
+    gap: 20px;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-btn{
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-btn-text:not(:disabled):hover {
+    color: #52C41A;
+    border-color: #52C41A;
+    background-color: #FFFFFF;
+}

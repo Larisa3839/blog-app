@@ -1,0 +1,72 @@
+.article-content {
+    width: 938px;
+    padding: 15px;
+    margin-top: 26px;
+    margin-bottom: 64px;
+    height: 800px;
+    background: #ffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.article-content .article-list__item {
+    box-shadow: none;
+    padding: 0;
+}
+
+.article-content .article__description,
+.article-content .article__tags .ant-tag{
+    color: rgba(0, 0, 0, 0.5)
+}
+.article-list__item {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 15px;
+    width: 938px;
+    height: 140px;
+    background: #ffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.article__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.article__title-likes {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+h2:where(.css-dev-only-do-not-override-1i536d8).ant-typography {
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1890FF;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-statistic .ant-statistic-content {
+    font-size: 13px;
+}
+
+.article__description {
+    font-size: 12px;
+    line-height: 22px;
+    width: 682px;
+    margin: 0;
+}
+
+.article__autor {
+    display: flex;
+    gap: 12px;
+}
+
+.article__autor__date {
+    display: flex;
+    flex-direction: column;
+}
