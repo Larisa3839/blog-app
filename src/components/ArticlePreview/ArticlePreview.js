@@ -3,31 +3,31 @@ import { Avatar, Typography, Statistic, Tag } from 'antd'
 import { HeartOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
-import './ArticlePreview.css'
+import styles from './ArticlePreview.module.scss'
 
-const { Paragraph, Text, Title } = Typography
+const { Paragraph, Text } = Typography
 
 const ArticlePreview = ({ article, children }) => (
-  <article className={`${children ? 'article-content' : ''}`}>
-    <div className="article-list__item">
-      <div className="article__info">
-        <div className="article__title-likes">
+  <article className={children ? styles.articleContent : ''}>
+    <div className={styles.articleListItem}>
+      <div className={styles.articleInfo}>
+        <div className={styles.likes}>
           <Link to={`articles/${article.slug}`}>
-            <Title level={2} href="">
+            <Text level={2} className={styles.articlePrewTitle}>
               {article.title}
-            </Title>
+            </Text>
           </Link>
           <Statistic value={article.favoritesCount} prefix={<HeartOutlined />} />
         </div>
-        <div className="article__tags">
+        <div className={styles.articleTags}>
           {article.tagList.map((tag, i) => (
             <Tag key={i}>{tag}</Tag>
           ))}
         </div>
-        <Paragraph className="article__description">{article.description}</Paragraph>
+        <Paragraph className={styles.articleDescription}>{article.description}</Paragraph>
       </div>
-      <div className="article__autor">
-        <div className="article__autor__date">
+      <div className={styles.articleAuthor}>
+        <div className={styles.articleAuthorDate}>
           <Text>{article.author.username}</Text>
           <Text type="secondary">{format(parseISO(article.createdAt), 'MMMM dd, yyyy')}</Text>
         </div>

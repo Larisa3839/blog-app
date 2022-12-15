@@ -1,9 +1,44 @@
 a:not([class]) {
   text-decoration: none;
 }
-
+h2 {
+  margin: 0;
+}
 body {
   margin: 0;
   background-color: #E5E5E5;
 }
 
+h1:where(.css-dev-only-do-not-override-1i536d8).ant-typography {
+  margin: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-btn{
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-btn-text:not(:disabled):hover {
+  color: #52C41A;
+  border-color: #52C41A;
+  background-color: #FFFFFF;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-btn.ant-btn-sm:hover {
+  color: #52C41A;
+  border-color: #52C41A;
+  background-color: #FFFFFF;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-btn-default:not(:disabled):hover {
+  color: #52C41A;
+  border-color: #52C41A;
+  background-color: #FFFFFF;
+}

@@ -1,4 +1,5 @@
 .wrapperForm {
+    box-sizing: border-box;
     margin-top: 60px;
     padding: 48px 32px;
     width: 384px;
@@ -8,10 +9,19 @@
     background: #ffff;
 }
 
-:where(.css-dev-only-do-not-override-1i536d8).ant-row {
-    
+.titleForm {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: #262626;
 }
 
-:where(.css-dev-only-do-not-override-1i536d8).ant-form-item .ant-form-item-label {
-    text-align: left;
+.buttonForm {
+    margin: 0;
+    width: 320px;
+    justify-content: center;
+    margin-bottom: 8px;
 }

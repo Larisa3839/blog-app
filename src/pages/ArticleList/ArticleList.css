@@ -32,3 +32,7 @@
 :where(.css-dev-only-do-not-override-1i536d8).ant-pagination:where(.css-dev-only-do-not-override-1i536d8).ant-pagination-mini .ant-pagination-options {
     display: none;
 }
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-statistic .ant-statistic-content {
+    font-size: 13px;
+}

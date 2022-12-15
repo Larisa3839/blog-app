@@ -1,0 +1,112 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+
+export const fetchLoginUser = createAsyncThunk('user/fetchLoginUser', async ({ email, password }) => {
+  const res = await axios.post(
+    'https://blog.kata.academy/api/users/login',
+    {
+      user: {
+        email,
+        password,
+      },
+    },
+    {
+      headers: { 'Content-Type': 'application/json' },
+    }
+  )
+  return res.data
+})
+
+export const fetchCreateUser = createAsyncThunk('user/fetchCreateUser', async ({ username, email, password }) => {
+  const res = await axios.post(
+    'https://blog.kata.academy/api/users',
+    {
+      user: {
+        username,
+        email,
+        password,
+      },
+    },
+    {
+      headers: { 'Content-Type': 'application/json' },
+    }
+  )
+  return res.data
+})
+
+export const fetchUpdateUser = createAsyncThunk(
+  'user/fetchUpdateUser',
+  async ({ username, email, password, image }) => {
+    const res = await axios.put(
+      'https://blog.kata.academy/api/user',
+      {
+        user: {
+          username,
+          email,
+          password,
+          image,
+        },
+      },
+      {
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
+    return res.data
+  }
+)
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState: {
+    username: '',
+    email: '',
+    bio: '',
+    image: '',
+    token: '',
+    userIsEdit: false,
+    isErrorUserRequest: false,
+  },
+  reducers: {
+    logOut(state) {
+      state.username = ''
+      state.email = ''
+      state.bio = ''
+      state.image = ''
+      state.userRequestStatus = ''
+      state.token = ''
+    },
+  },
+  extraReducers: {
+    [fetchLoginUser.fulfilled]: (state, action) => {
+      state.username = action.payload.user.username
+      state.email = action.payload.user.email
+      state.bio = action.payload.user.bio
+      state.image = action.payload.user.image
+      state.token = action.payload.user.token
+      state.userIsEdit = true
+    },
+    [fetchLoginUser.rejected]: (state) => {
+      state.isErrorUserRequest = true
+    },
+    [fetchCreateUser.fulfilled]: (state) => {
+      state.userIsEdit = true
+    },
+    [fetchCreateUser.rejected]: (state) => {
+      state.isErrorUserRequest = true
+    },
+    [fetchUpdateUser.fulfilled]: (state, action) => {
+      state.username = action.payload.user.username
+      state.email = action.payload.user.email
+      state.bio = action.payload.user.bio
+      state.image = action.payload.user.image
+      state.userIsEdit = true
+    },
+    [fetchUpdateUser.rejected]: (state) => {
+      state.isErrorUserRequest = true
+    },
+  },
+})
+
+// eslint-disable-next-line no-empty-pattern
+export const { logOut } = userSlice.actions
+export default userSlice.reducer
