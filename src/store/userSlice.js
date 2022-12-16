@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+import { deleteCookie, getCookie } from '../utils/cookie'
+
 export const fetchLoginUser = createAsyncThunk('user/fetchLoginUser', async ({ email, password }) => {
   const res = await axios.post(
     'https://blog.kata.academy/api/users/login',
@@ -49,6 +51,7 @@ export const fetchUpdateUser = createAsyncThunk(
       },
       {
         headers: { 'Content-Type': 'application/json' },
+        Authorization: `Token ${getCookie('token')}`,
       }
     )
     return res.data
@@ -62,7 +65,6 @@ const userSlice = createSlice({
     email: '',
     bio: '',
     image: '',
-    token: '',
     userIsEdit: false,
     isErrorUserRequest: false,
   },
@@ -73,7 +75,7 @@ const userSlice = createSlice({
       state.bio = ''
       state.image = ''
       state.userRequestStatus = ''
-      state.token = ''
+      deleteCookie('token')
     },
   },
   extraReducers: {
@@ -82,7 +84,7 @@ const userSlice = createSlice({
       state.email = action.payload.user.email
       state.bio = action.payload.user.bio
       state.image = action.payload.user.image
-      state.token = action.payload.user.token
+      document.cookie = `token = ${action.payload.user.token}`
       state.userIsEdit = true
     },
     [fetchLoginUser.rejected]: (state) => {

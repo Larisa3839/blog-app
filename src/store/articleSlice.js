@@ -1,11 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+import { getCookie } from '../utils/cookie'
+
 export const fetchGetArticles = createAsyncThunk('articles/fetchGetArticles', async ({ limit, offset }) => {
   const res = await axios.get('https://blog.kata.academy/api/articles', {
     params: {
       limit,
       offset,
+    },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Token ${getCookie('token')}`,
     },
   })
   return res.data

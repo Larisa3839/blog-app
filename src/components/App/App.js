@@ -5,9 +5,9 @@ import Main from '../Main'
 //import Layout from '../Layout'
 import ArticleList from '../../pages/ArticleList'
 import SingleArticle from '../../pages/SengleArticle'
-import SignIn from '../../pages/SignIn'
-import SignUp from '../../pages/SignUp'
-import EditProfile from '../../pages/EditProfale'
+import SignIn from '../SignIn'
+import SignUp from '../SignUp'
+import EditProfile from '../EditProfale'
 
 import './App.css'
 
