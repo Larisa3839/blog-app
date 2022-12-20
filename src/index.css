@@ -9,15 +9,15 @@ body {
   background-color: #E5E5E5;
 }
 
-h1:where(.css-dev-only-do-not-override-1i536d8).ant-typography {
-  margin: 0;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 28px;
-  color: rgba(0, 0, 0, 0.85);
+h1 {
+  margin: 0 !important;
+  font-weight: 400 !important;
+  font-size: 18px !important;
+  line-height: 28px !important;
+  color: rgba(0, 0, 0, 0.85) !important;
 }
 
-:where(.css-dev-only-do-not-override-1i536d8).ant-btn{
+.ant-btn{
   display: flex;
   align-items: center;
   font-weight: 400;
@@ -25,34 +25,10 @@ h1:where(.css-dev-only-do-not-override-1i536d8).ant-typography {
   line-height: 28px;
 }
 
-:where(.css-dev-only-do-not-override-1i536d8).ant-btn-text:not(:disabled):hover {
-  color: #52C41A;
-  border-color: #52C41A;
-  background-color: #FFFFFF;
-}
-
-:where(.css-dev-only-do-not-override-1i536d8).ant-btn.ant-btn-sm:hover {
-  color: #52C41A;
-  border-color: #52C41A;
-  background-color: #FFFFFF;
-}
-
-:where(.css-dev-only-do-not-override-1i536d8).ant-btn-default:not(:disabled):hover {
-  color: #52C41A;
-  border-color: #52C41A;
-  background-color: #FFFFFF;
-}
-
-:where(.css-dev-only-do-not-override-1i536d8).ant-btn-primary.ant-btn-background-ghost {
-  color: #52C41A;
-  border-color: #52C41A;
-  background-color: #FFFFFF;
-}
-
-:where(.css-dev-only-do-not-override-1i536d8).ant-btn-primary.ant-btn-background-ghost:not(:disabled):hover {
-  color: #52C41A;
-  border-color: #52C41A;
-  background-color: #FFFFFF;
+.ant-btn-default:hover {
+  color: #52C41A !important;
+  border-color: #52C41A !important;
+  background-color: #FFFFFF !important;
 }
 
 .ant-btn {
