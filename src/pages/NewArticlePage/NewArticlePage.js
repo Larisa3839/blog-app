@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Alert } from 'antd'
 
 import NewArticle from '../../components/NewArticle/NewArticle'
-import { fetchCreateArticle } from '../../store/articleSlice'
+import { fetchCreateArticle, fetchGetArticles } from '../../store/articleSlice'
 
 const NewArticlePage = () => {
   const dispatch = useDispatch()
@@ -12,7 +12,8 @@ const NewArticlePage = () => {
 
   const handleFormSubmit = (data, tagList) => {
     dispatch(fetchCreateArticle({ ...data, tagList }))
-    history.push('/articles')
+    dispatch(fetchGetArticles)
+    history.push('/')
   }
   const errMessage = errorRequest ? <Alert message="Error Text" description="Fetch login error" type="error" /> : null
   return errMessage || <NewArticle handleFormSubmit={handleFormSubmit} />

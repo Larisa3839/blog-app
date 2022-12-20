@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Avatar, Button, Typography } from 'antd'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { logOut } from '../../store/userSlice'
+import { logOut, fetchGetUser } from '../../store/userSlice'
 
 import styles from './Header.module.scss'
 const { Title, Text } = Typography
@@ -13,6 +14,11 @@ const Header = () => {
   const userName = useSelector((state) => state.user.username)
   const defaultAvatar = 'https://losslessclub.com/attachs/artist_33566_41294.jpg'
   const avatar = useSelector((state) => state.user.image)
+
+  useEffect(() => {
+    dispatch(fetchGetUser())
+  }, [dispatch])
+
   return (
     <header className={styles.header}>
       <Link to="/">

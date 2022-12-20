@@ -16,17 +16,16 @@ const SingleArticle = () => {
   const dispatch = useDispatch()
   const { slug } = useParams()
   const isLoading = useSelector((state) => state.articles.isLoadingArticles)
+  const article = useSelector((state) => state.articles.singleArticle)
 
   useEffect(() => {
     dispatch(fetchSingleArticle(slug))
   }, [dispatch, slug])
 
-  const article = useSelector((state) => state.articles.singleArticle)
-
   const spiner = isLoading ? <Spiner /> : null
   const content = article ? (
     <div>
-      <ArticlePreview article={article}>
+      <ArticlePreview singlePage article={article}>
         <Paragraph>
           <ReactMarkdown>{article.body}</ReactMarkdown>
         </Paragraph>

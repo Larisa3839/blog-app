@@ -15,21 +15,27 @@ const schema = yup.object().shape({
   text: yup.string().required(),
 })
 
-const NewArticle = ({ handleFormSubmit }) => {
-  const [tagList, setTagList] = useState([])
+const NewArticle = ({ handleFormSubmit, article, editArticle }) => {
+  const [tagList, setTagList] = useState(article?.tagList || [])
   const [tagValue, setTagValue] = useState('')
+
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm({
+    defaultValues: {
+      title: article?.title || '',
+      description: article?.description || '',
+      text: article?.body || '',
+    },
     resolver: yupResolver(schema),
   })
+
   const handleClickAddTag = () => {
     setTagList([...tagList, tagValue])
     setTagValue('')
-    console.log(tagList)
   }
 
   const handleClickDeleteTag = (id) => {
@@ -37,12 +43,11 @@ const NewArticle = ({ handleFormSubmit }) => {
   }
   const onFinish = (data) => {
     handleFormSubmit(data, tagList)
-    console.log('Received data of form: ', data, tagList)
   }
   return (
     <div className={styles.wrapperForm}>
       <Text className={styles.titleForm} level={2}>
-        Create new article
+        {editArticle ? 'Edit article' : 'Create new article'}
       </Text>
       <Form layout="vertical" name="normal_login" className="login-form" onFinish={handleSubmit(onFinish)}>
         <Form.Item

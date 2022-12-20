@@ -31,10 +31,11 @@ const SignUp = ({ handleFormSubmit }) => {
   } = useForm({
     resolver: yupResolver(schema),
   })
+
   const onFinish = (data) => {
-    console.log('Received values of form: ', data)
     handleFormSubmit(data)
   }
+
   return (
     <div className={styles.wrapperForm}>
       <Text className={styles.titleForm} level={2}>

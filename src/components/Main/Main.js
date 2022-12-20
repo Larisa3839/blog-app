@@ -1,9 +1,9 @@
 import { Layout } from 'antd'
 
-import './Main.css'
+import styles from './Main.module.scss'
 const { Content } = Layout
 const Main = ({ children }) => {
-  return <Content className="main">{children}</Content>
+  return <Content className={styles.main}>{children}</Content>
 }
 
 export default Main

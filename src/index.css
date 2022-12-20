@@ -42,3 +42,29 @@ h1:where(.css-dev-only-do-not-override-1i536d8).ant-typography {
   border-color: #52C41A;
   background-color: #FFFFFF;
 }
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-btn-primary.ant-btn-background-ghost {
+  color: #52C41A;
+  border-color: #52C41A;
+  background-color: #FFFFFF;
+}
+
+:where(.css-dev-only-do-not-override-1i536d8).ant-btn-primary.ant-btn-background-ghost:not(:disabled):hover {
+  color: #52C41A;
+  border-color: #52C41A;
+  background-color: #FFFFFF;
+}
+
+.ant-btn {
+  margin: 0 !important;
+  display: inline-flex !important;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}

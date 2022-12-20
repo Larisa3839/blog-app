@@ -28,24 +28,22 @@ export const fetchCreateArticle = createAsyncThunk(
         headers: { 'Content-Type': 'application/json;charset=utf-8', Authorization: `Token ${getCookie('token')}` },
       }
     )
-    console.log(res.data)
     return res.data
   }
 )
 
 export const fetchEditArticle = createAsyncThunk(
   'articles/fetchEditArticle',
-  async ({ slug, title, description, body, tagList }) => {
+  async ({ slug, title, description, text, tagList }) => {
     const res = await axios.put(
       `https://blog.kata.academy/api/articles/${slug}`,
       {
-        article: { title, description, body, tagList },
+        article: { title, description, body: text, tagList },
       },
       {
         headers: { 'Content-Type': 'application/json;charset=utf-8', Authorization: `Token ${getCookie('token')}` },
       }
     )
-    console.log(res.data)
     return res.data
   }
 )
@@ -76,7 +74,7 @@ export const fetchDeleteFavoriteArticle = createAsyncThunk('articles/fetchDelete
 })
 
 const articleSlice = createSlice({
-  name: 'article',
+  name: 'articles',
   initialState: {
     articles: [],
     singleArticle: null,
@@ -120,6 +118,28 @@ const articleSlice = createSlice({
     [fetchCreateArticle.fulfilled]: (state) => {
       state.isErrorArticlesRequest = false
       state.articleIsCreated = true
+    },
+    [fetchEditArticle.pending]: (state) => {
+      state.isErrorArticlesRequest = false
+      state.articleIsCreated = false
+    },
+    [fetchEditArticle.rejected]: (state) => {
+      state.isErrorArticlesRequest = true
+      state.articleIsCreated = false
+    },
+    [fetchEditArticle.fulfilled]: (state, action) => {
+      state.isErrorArticlesRequest = false
+      state.articleIsCreated = true
+      state.singleArticle = { ...action.payload.article }
+    },
+    [fetchDeleteArticle.rejected]: (state) => {
+      state.isErrorArticlesRequest = true
+    },
+    [fetchSetFavoriteArticle.fulfilled]: (state) => {
+      state.isErrorArticlesRequest = false
+    },
+    [fetchSetFavoriteArticle.rejected]: (state) => {
+      state.isErrorArticlesRequest = true
     },
   },
 })

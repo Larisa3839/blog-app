@@ -3,20 +3,19 @@ import axios from 'axios'
 
 import { deleteCookie, getCookie } from '../utils/cookie'
 
+export const fetchGetUser = createAsyncThunk('user/fetchGetUser', async () => {
+  const res = await axios.get('https://blog.kata.academy/api/user', {
+    headers: { 'Content-Type': 'application/json;charset=utf-8', Authorization: `Token ${getCookie('token')}` },
+  })
+  return res.data
+})
 export const fetchLoginUser = createAsyncThunk('user/fetchLoginUser', async ({ email, password }) => {
-  const res = await axios.post(
-    'https://blog.kata.academy/api/users/login',
-    {
-      user: {
-        email,
-        password,
-      },
+  const res = await axios.post('https://blog.kata.academy/api/users/login', {
+    user: {
+      email,
+      password,
     },
-    {
-      headers: { 'Content-Type': 'application/json' },
-    }
-  )
-  console.log(res)
+  })
   return res.data
 })
 
@@ -85,6 +84,12 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
+    [fetchGetUser.fulfilled]: (state, action) => {
+      state.username = action.payload.user.username
+      state.email = action.payload.user.email
+      state.bio = action.payload.user.bio
+      state.image = action.payload.user.image
+    },
     [fetchLoginUser.pending]: (state) => {
       state.userRequestSuccess = false
     },

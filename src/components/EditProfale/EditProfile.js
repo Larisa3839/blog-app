@@ -12,7 +12,7 @@ const schema = yup.object().shape({
   username: yup.string().required(),
   email: yup.string().email().required(),
   newPassword: yup.string().min(6).max(40),
-  avatar: yup.string().url(),
+  image: yup.string().url(),
 })
 
 const EditProfile = ({ handleFormSubmit }) => {
@@ -23,11 +23,14 @@ const EditProfile = ({ handleFormSubmit }) => {
     control,
     formState: { errors },
   } = useForm({
+    defaultValues: {
+      username: username ? username : '',
+      email: email ? email : '',
+      image: image ? image : '',
+    },
     resolver: yupResolver(schema),
   })
-  console.log(username, email, image)
   const onFinish = (data) => {
-    console.log('Received data of form: ', data)
     handleFormSubmit(data)
   }
   return (
@@ -43,7 +46,6 @@ const EditProfile = ({ handleFormSubmit }) => {
           label="Username"
         >
           <Controller
-            defaultValue={username}
             control={control}
             name="username"
             render={({ field }) => <Input placeholder="Username" {...register('username')} {...field} />}
@@ -56,7 +58,6 @@ const EditProfile = ({ handleFormSubmit }) => {
           label="Email address"
         >
           <Controller
-            defaultValue={email}
             control={control}
             name="email"
             render={({ field }) => <Input placeholder="Email address" {...register('email')} {...field} />}
@@ -75,15 +76,15 @@ const EditProfile = ({ handleFormSubmit }) => {
           />
         </Form.Item>
         <Form.Item
-          help={errors?.avatar?.message}
-          validateStatus={errors.avatar ? 'error' : 'success'}
-          name="avatar"
+          help={errors?.image?.message}
+          validateStatus={errors.image ? 'error' : 'success'}
+          name="image"
           label="Avatar image (url)"
         >
           <Controller
             control={control}
-            name="avatar"
-            render={({ field }) => <Input {...register('avatar')} {...field} placeholder="Avatar image" />}
+            name="image"
+            render={({ field }) => <Input {...register('image')} placeholder="Avatar image" {...field} />}
           />
         </Form.Item>
         <Form.Item>

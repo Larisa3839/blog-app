@@ -61,10 +61,24 @@
 
 .articleAuthor {
     display: flex;
+    justify-content: flex-end;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .articleAuthorDate {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+}
+
+.articleButtons {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.likesButton {
+    display: flex;
+    gap: 5px;
 }
