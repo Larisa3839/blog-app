@@ -16,6 +16,7 @@ export const fetchLoginUser = createAsyncThunk('user/fetchLoginUser', async ({ e
       headers: { 'Content-Type': 'application/json' },
     }
   )
+  console.log(res)
   return res.data
 })
 
@@ -50,8 +51,7 @@ export const fetchUpdateUser = createAsyncThunk(
         },
       },
       {
-        headers: { 'Content-Type': 'application/json' },
-        Authorization: `Token ${getCookie('token')}`,
+        headers: { 'Content-Type': 'application/json;charset=utf-8', Authorization: `Token ${getCookie('token')}` },
       }
     )
     return res.data
@@ -65,7 +65,7 @@ const userSlice = createSlice({
     email: '',
     bio: '',
     image: '',
-    userIsEdit: false,
+    userRequestSuccess: false,
     isErrorUserRequest: false,
   },
   reducers: {
@@ -77,31 +77,51 @@ const userSlice = createSlice({
       state.userRequestStatus = ''
       deleteCookie('token')
     },
+    setSuccessRequest(state) {
+      state.userRequestSuccess = false
+    },
+    resetUserError(state) {
+      state.isErrorUserRequest = false
+    },
   },
   extraReducers: {
+    [fetchLoginUser.pending]: (state) => {
+      state.userRequestSuccess = false
+    },
     [fetchLoginUser.fulfilled]: (state, action) => {
       state.username = action.payload.user.username
       state.email = action.payload.user.email
       state.bio = action.payload.user.bio
       state.image = action.payload.user.image
       document.cookie = `token = ${action.payload.user.token}`
-      state.userIsEdit = true
+      state.userRequestSuccess = true
     },
     [fetchLoginUser.rejected]: (state) => {
       state.isErrorUserRequest = true
     },
-    [fetchCreateUser.fulfilled]: (state) => {
-      state.userIsEdit = true
+    [fetchCreateUser.pending]: (state) => {
+      state.userRequestSuccess = false
+    },
+    [fetchCreateUser.fulfilled]: (state, action) => {
+      state.username = action.payload.user.username
+      state.email = action.payload.user.email
+      state.bio = action.payload.user.bio
+      state.image = action.payload.user.image
+      document.cookie = `token = ${action.payload.user.token}`
+      state.userRequestSuccess = true
     },
     [fetchCreateUser.rejected]: (state) => {
       state.isErrorUserRequest = true
+    },
+    [fetchUpdateUser.pending]: (state) => {
+      state.userRequestSuccess = false
     },
     [fetchUpdateUser.fulfilled]: (state, action) => {
       state.username = action.payload.user.username
       state.email = action.payload.user.email
       state.bio = action.payload.user.bio
       state.image = action.payload.user.image
-      state.userIsEdit = true
+      state.userRequestSuccess = true
     },
     [fetchUpdateUser.rejected]: (state) => {
       state.isErrorUserRequest = true
@@ -110,5 +130,5 @@ const userSlice = createSlice({
 })
 
 // eslint-disable-next-line no-empty-pattern
-export const { logOut } = userSlice.actions
+export const { logOut, setSuccessRequest, resetUserError } = userSlice.actions
 export default userSlice.reducer

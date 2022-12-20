@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { Button, Form, Input, Typography } from 'antd'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -14,7 +15,8 @@ const schema = yup.object().shape({
   avatar: yup.string().url(),
 })
 
-const EditProfile = () => {
+const EditProfile = ({ handleFormSubmit }) => {
+  const { username, email, image } = useSelector((state) => state.user)
   const {
     register,
     handleSubmit,
@@ -23,8 +25,10 @@ const EditProfile = () => {
   } = useForm({
     resolver: yupResolver(schema),
   })
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values)
+  console.log(username, email, image)
+  const onFinish = (data) => {
+    console.log('Received data of form: ', data)
+    handleFormSubmit(data)
   }
   return (
     <div className={styles.wrapperForm}>
@@ -39,6 +43,7 @@ const EditProfile = () => {
           label="Username"
         >
           <Controller
+            defaultValue={username}
             control={control}
             name="username"
             render={({ field }) => <Input placeholder="Username" {...register('username')} {...field} />}
@@ -51,6 +56,7 @@ const EditProfile = () => {
           label="Email address"
         >
           <Controller
+            defaultValue={email}
             control={control}
             name="email"
             render={({ field }) => <Input placeholder="Email address" {...register('email')} {...field} />}
@@ -77,7 +83,7 @@ const EditProfile = () => {
           <Controller
             control={control}
             name="avatar"
-            render={({ ...field }) => <Input {...register('avatar')} {...field} placeholder="Avatar image" />}
+            render={({ field }) => <Input {...register('avatar')} {...field} placeholder="Avatar image" />}
           />
         </Form.Item>
         <Form.Item>

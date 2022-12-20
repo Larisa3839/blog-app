@@ -22,7 +22,7 @@ const schema = yup.object().shape({
     .oneOf([true], 'The terms and conditions must be accepted.'),
 })
 
-const SignUp = () => {
+const SignUp = ({ handleFormSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -31,8 +31,9 @@ const SignUp = () => {
   } = useForm({
     resolver: yupResolver(schema),
   })
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values)
+  const onFinish = (data) => {
+    console.log('Received values of form: ', data)
+    handleFormSubmit(data)
   }
   return (
     <div className={styles.wrapperForm}>
@@ -96,7 +97,6 @@ const SignUp = () => {
             name="agree"
           >
             <Controller
-              {...register('agree')}
               name="agree"
               control={control}
               render={({ field: { value, onChange } }) => (

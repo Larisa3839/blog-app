@@ -10,6 +10,9 @@ const { Title, Text } = Typography
 const Header = () => {
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.user.email)
+  const userName = useSelector((state) => state.user.username)
+  const defaultAvatar = 'https://losslessclub.com/attachs/artist_33566_41294.jpg'
+  const avatar = useSelector((state) => state.user.image)
   return (
     <header className={styles.header}>
       <Link to="/">
@@ -30,14 +33,14 @@ const Header = () => {
           <Link to="/new-article">
             <Button size="small">Create article</Button>
           </Link>
-          <Link to="/profale">
+          <Link to="/profile">
             <div className={styles.avatar}>
-              <Text className={styles.text}>John Doe</Text>
-              <Avatar size={46} src="https://losslessclub.com/attachs/artist_33566_41294.jpg" />
+              <Text className={styles.text}>{userName}</Text>
+              <Avatar size={46} src={avatar ? avatar : defaultAvatar} />
             </div>
           </Link>
           <Link to="/articles">
-            <Button onClick={dispatch(logOut())}>Log Out</Button>
+            <Button onClick={() => dispatch(logOut())}>Log Out</Button>
           </Link>
         </div>
       )}

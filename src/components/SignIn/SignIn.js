@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   password: yup.string().required(),
 })
 
-const SignIn = () => {
+const SignIn = ({ handleFormSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -22,8 +22,9 @@ const SignIn = () => {
   } = useForm({
     resolver: yupResolver(schema),
   })
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values)
+  const onFinish = (data) => {
+    console.log('Received data of form: ', data)
+    handleFormSubmit(data)
   }
   return (
     <div className={styles.wrapperForm}>

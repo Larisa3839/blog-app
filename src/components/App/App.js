@@ -2,12 +2,10 @@ import { Route } from 'react-router-dom'
 
 import Header from '../Header'
 import Main from '../Main'
-//import Layout from '../Layout'
 import ArticleList from '../../pages/ArticleList'
 import SingleArticle from '../../pages/SengleArticle'
-import SignIn from '../SignIn'
-import SignUp from '../SignUp'
-import EditProfile from '../EditProfale'
+import NewArticlePage from '../../pages/NewArticlePage'
+import { SignInPage, SignUpPage, EditProfilePage } from '../../pages/formsComponent'
 
 import './App.css'
 
@@ -19,9 +17,10 @@ function App() {
         <Route path="/" exact component={ArticleList} />
         <Route path="/articles" exact component={ArticleList} />
         <Route path="/articles/:slug" component={SingleArticle} />
-        <Route path="/sign-in" component={SignIn} />
-        <Route path="/sign-up" component={SignUp} />
-        <Route path="/profile" component={EditProfile} />
+        <Route path="/sign-in" component={SignInPage} />
+        <Route path="/sign-up" component={SignUpPage} />
+        <Route path="/profile" component={EditProfilePage} />
+        <Route path="/new-article" component={NewArticlePage} />
       </Main>
     </>
   )
