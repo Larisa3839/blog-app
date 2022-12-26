@@ -1,7 +1,7 @@
-import SignIn from '../../components/SignIn'
-import SignUp from '../../components/SignUp'
-import EditProfale from '../../components/EditProfale'
-import { fetchCreateUser, fetchLoginUser, fetchUpdateUser } from '../../store/userSlice'
+import SignIn from '../../../components/SignIn'
+import SignUp from '../../../components/SignUp'
+import EditProfale from '../../../components/EditProfale'
+import { fetchCreateUser, fetchLoginUser, fetchUpdateUser } from '../../../store/userSlice'
 
 import formsComponent from './formsComponent'
 

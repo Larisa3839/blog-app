@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { logOut, fetchGetUser } from '../../store/userSlice'
+import { getCookie } from '../../utils/cookie'
 
 import styles from './Header.module.scss'
 const { Title, Text } = Typography
@@ -16,7 +17,7 @@ const Header = () => {
   const avatar = useSelector((state) => state.user.image)
 
   useEffect(() => {
-    dispatch(fetchGetUser())
+    if (getCookie('token')) dispatch(fetchGetUser())
   }, [dispatch])
 
   return (

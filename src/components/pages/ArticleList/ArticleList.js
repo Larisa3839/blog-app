@@ -3,9 +3,9 @@ import { Pagination } from 'antd'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import ArticlePreview from '../../components/ArticlePreview'
-import { fetchGetArticles } from '../../store/articleSlice'
-import Spiner from '../../components/Spiner'
+import ArticlePreview from '../../ArticlePreview'
+import { fetchGetArticles } from '../../../store/articleSlice'
+import Spiner from '../../Spiner'
 
 import './ArticleList.css'
 

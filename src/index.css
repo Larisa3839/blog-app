@@ -44,3 +44,14 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
+a {
+  max-width: 600px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+
+.ant-tag {
+  display: flex;
+}

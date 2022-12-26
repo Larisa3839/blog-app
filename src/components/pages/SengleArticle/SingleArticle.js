@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { Typography } from 'antd'
 
-import ArticlePreview from '../../components/ArticlePreview'
-import { fetchSingleArticle } from '../../store/articleSlice'
-import Spiner from '../../components/Spiner'
+import ArticlePreview from '../../ArticlePreview'
+import { fetchSingleArticle } from '../../../store/articleSlice'
+import Spiner from '../../Spiner'
 
 import './SingleArticle.css'
 

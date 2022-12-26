@@ -86,6 +86,7 @@ const articleSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchGetArticles.pending]: (state) => {
+      state.articleIsCreated = false
       state.isLoadingArticles = true
     },
     [fetchGetArticles.rejected]: (state) => {
@@ -93,6 +94,7 @@ const articleSlice = createSlice({
       state.isLoadingArticles = false
     },
     [fetchGetArticles.fulfilled]: (state, action) => {
+      state.articleIsCreated = false
       state.articles = [...action.payload.articles]
       state.isLoadingArticles = false
       state.articlesCount = action.payload.articlesCount
@@ -110,6 +112,7 @@ const articleSlice = createSlice({
     },
     [fetchCreateArticle.pending]: (state) => {
       state.isErrorArticlesRequest = false
+      state.articleIsCreated = false
     },
     [fetchCreateArticle.rejected]: (state) => {
       state.isErrorArticlesRequest = true

@@ -43,6 +43,10 @@
 }
 
 .articlePrewTitle {
+    min-height: 28px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
     margin: 0;
     font-style: normal;
     font-weight: 400;
@@ -51,8 +55,17 @@
     color: #1890FF;
 }
 
+.articleTags {
+    display: flex;
+    max-width: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+}
 
 .articleDescription {
+    overflow: hidden;
+    text-overflow: clip;
     font-size: 12px;
     line-height: 22px;
     width: 682px;

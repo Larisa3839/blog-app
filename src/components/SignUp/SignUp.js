@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -23,14 +25,24 @@ const schema = yup.object().shape({
 })
 
 const SignUp = ({ handleFormSubmit }) => {
+  const error = useSelector((state) => state.user.isErrorUserRequest)
   const {
     register,
     handleSubmit,
+    reset,
     control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   })
+
+  useEffect(() => {
+    if (error)
+      reset({
+        username: '',
+        email: '',
+      })
+  }, [error])
 
   const onFinish = (data) => {
     handleFormSubmit(data)
@@ -75,7 +87,9 @@ const SignUp = ({ handleFormSubmit }) => {
           <Controller
             control={control}
             name="password"
-            render={({ field }) => <Input placeholder="Password" {...register('password')} {...field} />}
+            render={({ field }) => (
+              <Input placeholder="Password" type="password" {...register('password')} {...field} />
+            )}
           />
         </Form.Item>
         <Form.Item
@@ -87,7 +101,9 @@ const SignUp = ({ handleFormSubmit }) => {
           <Controller
             control={control}
             name="repeatPassword"
-            render={({ field }) => <Input placeholder="Repeat Password" {...register('repeatPassword')} {...field} />}
+            render={({ field }) => (
+              <Input placeholder="Repeat Password" type="password" {...register('repeatPassword')} {...field} />
+            )}
           />
         </Form.Item>
         <Form.Item>

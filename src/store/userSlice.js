@@ -91,7 +91,7 @@ const userSlice = createSlice({
       state.image = action.payload.user.image
     },
     [fetchLoginUser.pending]: (state) => {
-      state.userRequestSuccess = false
+      state.isErrorUserRequest = false
     },
     [fetchLoginUser.fulfilled]: (state, action) => {
       state.username = action.payload.user.username
@@ -105,7 +105,7 @@ const userSlice = createSlice({
       state.isErrorUserRequest = true
     },
     [fetchCreateUser.pending]: (state) => {
-      state.userRequestSuccess = false
+      state.isErrorUserRequest = false
     },
     [fetchCreateUser.fulfilled]: (state, action) => {
       state.username = action.payload.user.username
@@ -119,7 +119,7 @@ const userSlice = createSlice({
       state.isErrorUserRequest = true
     },
     [fetchUpdateUser.pending]: (state) => {
-      state.userRequestSuccess = false
+      state.isErrorUserRequest = false
     },
     [fetchUpdateUser.fulfilled]: (state, action) => {
       state.username = action.payload.user.username

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -14,14 +16,24 @@ const schema = yup.object().shape({
 })
 
 const SignIn = ({ handleFormSubmit }) => {
+  const error = useSelector((state) => state.user.isErrorUserRequest)
   const {
     register,
     handleSubmit,
+    reset,
     control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   })
+
+  useEffect(() => {
+    if (error)
+      reset({
+        email: '',
+        password: '',
+      })
+  }, [error])
 
   const onFinish = (data) => {
     handleFormSubmit(data)
@@ -54,7 +66,9 @@ const SignIn = ({ handleFormSubmit }) => {
           <Controller
             control={control}
             name="password"
-            render={({ field }) => <Input placeholder="password" {...register('password')} {...field} />}
+            render={({ field }) => (
+              <Input placeholder="password" type="password" {...register('password')} {...field} />
+            )}
           />
         </Form.Item>
         <Form.Item>
