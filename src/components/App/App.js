@@ -25,7 +25,7 @@ function App() {
             <EditArticle />
           </PrivateRouter>
           <Route path="/sign-in">{auth ? <Redirect to="/" /> : <SignInPage />}</Route>
-          <Route path="/sign-up" component={SignUpPage} />
+          <Route path="/sign-up">{auth ? <Redirect to="/" /> : <SignUpPage />}</Route>
           <PrivateRouter path="/profile">
             <EditProfilePage />
           </PrivateRouter>
