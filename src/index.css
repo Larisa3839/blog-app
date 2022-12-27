@@ -53,5 +53,10 @@ a {
 }
 
 .ant-tag {
+  margin: 0;
+  width: fit-content;
   display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
 }
