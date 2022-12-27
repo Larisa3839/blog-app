@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Alert } from 'antd'
@@ -9,10 +10,14 @@ const NewArticlePage = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const errorRequest = useSelector((state) => state.articles.isErrorArticlesRequest)
+  const isCreated = useSelector((state) => state.articles.articleIsCreated)
+
+  useEffect(() => {
+    if (isCreated) history.push('/articles')
+  }, [dispatch, isCreated])
 
   const handleFormSubmit = (data, tagList) => {
     dispatch(fetchCreateArticle({ ...data, tagList }))
-    history.push('/articles')
   }
   const errMessage = errorRequest ? <Alert message="Error Text" description="Fetch login error" type="error" /> : null
   return errMessage || <NewArticle handleFormSubmit={handleFormSubmit} />
