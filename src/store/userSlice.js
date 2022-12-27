@@ -99,7 +99,6 @@ const userSlice = createSlice({
       state.bio = action.payload.user.bio
       state.image = action.payload.user.image
       document.cookie = `token = ${action.payload.user.token}`
-      state.userRequestSuccess = true
     },
     [fetchLoginUser.rejected]: (state) => {
       state.isErrorUserRequest = true
@@ -113,7 +112,6 @@ const userSlice = createSlice({
       state.bio = action.payload.user.bio
       state.image = action.payload.user.image
       document.cookie = `token = ${action.payload.user.token}`
-      state.userRequestSuccess = true
     },
     [fetchCreateUser.rejected]: (state) => {
       state.isErrorUserRequest = true

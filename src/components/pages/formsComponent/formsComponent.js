@@ -11,9 +11,11 @@ const formsComponent = (FormComponent, fetchFunction) => (props) => {
   const isSuccess = useSelector((state) => state.user.userRequestSuccess)
 
   useEffect(() => {
-    if (isSuccess) history.push('/')
-    dispatch(setSuccessRequest())
-  }, [isSuccess, dispatch])
+    if (isSuccess) {
+      dispatch(setSuccessRequest())
+      history.push('/')
+    }
+  }, [isSuccess, dispatch, history])
 
   const handleFormSubmit = (data) => {
     dispatch(fetchFunction(data))
